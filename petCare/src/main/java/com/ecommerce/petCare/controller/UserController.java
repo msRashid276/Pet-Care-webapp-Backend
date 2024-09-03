@@ -23,6 +23,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<RegisterRequest> register(@RequestBody RegisterRequest request){
+        System.out.println("huuuu"+request);
         RegisterRequest register = userService.register(request);
         return new ResponseEntity<>(register, HttpStatus.OK);
     }
