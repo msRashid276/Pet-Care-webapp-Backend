@@ -1,18 +1,18 @@
-package com.ecommerce.petCare.request;
-
+package com.ecommerce.petCare.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthenticationRequest {
+public class AuthenticationResponse {
 
-    private String email;
-    private String password;
+    private String token;
+    private String firstName;
+    private String role;
+
 }
