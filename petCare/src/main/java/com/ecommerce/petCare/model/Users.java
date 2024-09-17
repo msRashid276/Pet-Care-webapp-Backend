@@ -1,11 +1,15 @@
 package com.ecommerce.petCare.model;
 
 
+import com.ecommerce.petCare.dto.PetShopFavouritesDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -32,5 +36,14 @@ public class Users {
 
     @Enumerated(EnumType.STRING)
     private USER_ROLE role;
+
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "customer")
+    private List<Orders> orders = new ArrayList<>();
+
+    @ElementCollection
+    private List<PetShopFavouritesDto> favourites = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "user")
+    private List<Address> addresses = new ArrayList<>();
 
 }

@@ -1,6 +1,7 @@
 package com.ecommerce.petCare.service;
 
 
+import com.ecommerce.petCare.model.USER_ROLE;
 import com.ecommerce.petCare.model.UserPrinciple;
 import com.ecommerce.petCare.model.Users;
 import com.ecommerce.petCare.repository.UserRepo;
@@ -41,13 +42,16 @@ public class UserServiceImp implements UserService{
     public RegisterRequest register(RegisterRequest request) {
 
         try {
+            String role = request.getRole() != null ? request.getRole().toString() : "CUSTOMER";
+
             Users user = Users.builder()
                     .firstName(request.getFirstName())
                     .lastName(request.getLastName())
                     .email(request.getEmail())
                     .password(passwordEncoder.encode(request.getPassword()))
-                    .role(request.getRole())
+                    .role(USER_ROLE.valueOf(role))
                     .build();
+
 
             userRepo.save(user);
             return request;

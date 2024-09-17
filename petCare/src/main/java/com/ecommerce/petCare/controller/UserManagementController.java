@@ -22,6 +22,7 @@ public class UserManagementController {
     @Autowired
     private UserService userService;
 
+
     @GetMapping("/users")
     public ResponseEntity<List<Users>> getAllUsers(@RequestHeader("Authorization") String authHeader ) throws Exception {
         System.out.println(authHeader);

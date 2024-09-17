@@ -56,11 +56,13 @@ public class SecurityConfig {
             @Override
             public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
                 CorsConfiguration config = new CorsConfiguration();
-                config.setAllowedOrigins(Collections.singletonList("*"));
+                config.setAllowedOrigins(Arrays.asList(
+                        "http://localhost:5173"
+                ));
                 config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
                 config.setAllowCredentials(true);
                 config.setAllowedHeaders(Collections.singletonList("*"));
-                config.setExposedHeaders(Collections.singletonList("Authorization"));
+                config.setExposedHeaders(Arrays.asList("Authorization"));
                 config.setMaxAge(3600L);
                 return config;
             }
