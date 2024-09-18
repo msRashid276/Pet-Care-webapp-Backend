@@ -32,8 +32,6 @@ public class Pet {
 
     private BigDecimal price;
 
-    private String status;
-
     @Column(length = 1000)
     @ElementCollection
     private List<String> images;
@@ -41,11 +39,10 @@ public class Pet {
     @Column(length = 1000)
     private String description;
 
-    @ManyToOne
-    private PetShop petShop;
+    private boolean available;
 
     @ManyToOne
-    private Users owner;
+    private PetShop petShop;
 
     private LocalDateTime registrationDate;
 
