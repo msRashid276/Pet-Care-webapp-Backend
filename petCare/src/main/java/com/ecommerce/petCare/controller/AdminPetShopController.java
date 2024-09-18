@@ -45,7 +45,7 @@ public class AdminPetShopController {
         return new ResponseEntity<>(petShop, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{petShopId}")
+    @DeleteMapping("/{petShopId}")
     public ResponseEntity<MessageResponse> deletePetShop(@PathVariable Long petShopId, @RequestHeader("Authorization") String authHeader) throws Exception{
 
         Users user = userService.findUserByAuthorizationHeader(authHeader);

@@ -20,9 +20,10 @@ public class Pet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @ManyToOne
+    private Species species;
 
-    private String species;
+    private String name;
 
     private String breed;
 
