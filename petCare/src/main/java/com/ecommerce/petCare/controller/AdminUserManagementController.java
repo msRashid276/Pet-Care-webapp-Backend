@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin")
-public class UserManagementController {
+public class AdminUserManagementController {
 
     @Autowired
     private UserManagementService userManagementService;

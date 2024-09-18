@@ -40,7 +40,7 @@ public class SecurityConfig {
                 .csrf(customizer->customizer.disable())
                 .authorizeHttpRequests(request->request
                         .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
-                        .requestMatchers("/api/shopOwner/**").hasAnyAuthority("SHOP_OWNER","ADMIN")
+                        .requestMatchers("/api/shop-owner/**").hasAnyAuthority("SHOP_OWNER","ADMIN")
                         .requestMatchers("/api/user/**").hasAnyAuthority("CUSTOMER","ADMIN")
                         .requestMatchers("/auth/**").permitAll()
                         .anyRequest().authenticated())

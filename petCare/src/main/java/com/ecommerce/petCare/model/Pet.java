@@ -44,6 +44,6 @@ public class Pet {
     @ManyToOne
     private PetShop petShop;
 
-    private LocalDateTime registrationDate;
+    private LocalDateTime creationDate;
 
 }
