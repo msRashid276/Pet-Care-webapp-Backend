@@ -6,11 +6,13 @@ import com.ecommerce.petCare.model.Species;
 import com.ecommerce.petCare.repository.PetRepo;
 import com.ecommerce.petCare.request.CreatePetRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Service
 public class PetServiceImp implements PetService{
 
     @Autowired

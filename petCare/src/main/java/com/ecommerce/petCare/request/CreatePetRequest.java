@@ -14,7 +14,7 @@ public class CreatePetRequest {
     private String breed;
     private int age;
     private String gender;
-    private BigDecimal price;
+    private Long price;
     private List<String> images;
     private String description;
     private Long petShopId;

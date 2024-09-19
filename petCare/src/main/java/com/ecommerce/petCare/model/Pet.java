@@ -31,7 +31,7 @@ public class Pet {
 
     private String gender;
 
-    private BigDecimal price;
+    private Long price;
 
     @Column(length = 1000)
     @ElementCollection

@@ -9,23 +9,24 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity
 @Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Species {
+public class CartItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private String name;
-
-//    @OneToMany(mappedBy = "species",cascade = CascadeType.ALL,orphanRemoval = true)
-//    private List<Pet> pets;
 
     @JsonIgnore
     @ManyToOne
-    private PetShop petShop;
+    private Cart cart;
 
+    @ManyToOne
+    private Pet pet;
+
+    private int quantity;
+
+    private Long totalPrice;
 }

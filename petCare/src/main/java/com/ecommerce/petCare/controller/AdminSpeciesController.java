@@ -30,10 +30,12 @@ public class AdminSpeciesController {
     public ResponseEntity<Species> createSpecies(@RequestBody CreateSpeciesRequest request, @RequestHeader("Authorization") String authHeader) throws Exception {
         Users user = userService.findUserByAuthorizationHeader(authHeader);
 
-        Species species = speciesService.createSpecies(request);
+        Species species = speciesService.createSpecies(request.getName(),user.getId());
 
         return new ResponseEntity<>(species, HttpStatus.CREATED);
     }
+
+
 
     @DeleteMapping("/{speciesId}")
     public ResponseEntity<MessageResponse> deleteSpecies(@PathVariable Long speciesId, @RequestHeader("Authorization") String authHeader) throws Exception{
@@ -57,6 +59,7 @@ public class AdminSpeciesController {
         return new ResponseEntity<>(species, HttpStatus.OK);
     }
 
+
     @GetMapping()
     public ResponseEntity<List<Species>> getAllSpecies(@RequestHeader("Authorization") String authHeader) throws Exception {
 
@@ -66,6 +69,15 @@ public class AdminSpeciesController {
         return new ResponseEntity<>(species, HttpStatus.OK);
     }
 
+
+    @GetMapping("/pet-shop/species")
+    public ResponseEntity<List<Species>> getPetShopSpeciesByUserId(@RequestHeader("Authorization") String authHeader) throws Exception {
+
+        Users user = userService.findUserByAuthorizationHeader(authHeader);
+        List<Species> species  = speciesService.findSpeciesByPetShopIdFromUserId(user.getId());
+
+        return new ResponseEntity<>(species, HttpStatus.OK);
+    }
 
 
 }

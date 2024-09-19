@@ -11,8 +11,7 @@ import java.util.List;
 @Repository
 public interface PetShopRepo extends JpaRepository<PetShop,Long> {
 
-        @Query("SELECT p FROM PetShop WHERE "+
-            "LOWER(p.name) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+        @Query("SELECT p FROM PetShop p WHERE LOWER(p.name) LIKE LOWER(CONCAT('%', :keyword, '%'))")
         List<PetShop> findPetShopBySearchQuery(String keyword);
 
         PetShop findByOwnerId(Long userId);
