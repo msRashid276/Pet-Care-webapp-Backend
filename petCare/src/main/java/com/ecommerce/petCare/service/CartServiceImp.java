@@ -103,7 +103,10 @@ public class CartServiceImp implements CartService{
 
     @Override
     public Cart findCartByUserId(Long userId) throws Exception {
-        return cartRepo.findByCustomerId(userId);
+        Cart cart = cartRepo.findByCustomerId(userId);
+        cart.setTotal(calculateCartTotals(cart));
+
+        return cart;
     }
 
     @Override

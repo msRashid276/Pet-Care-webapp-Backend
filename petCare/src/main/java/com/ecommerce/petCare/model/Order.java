@@ -14,7 +14,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Orders {
+@Table(name = "Orders")
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,9 +38,9 @@ public class Orders {
     private Address address;
 
     @OneToMany
-    private List<OrderItems> orderItems;
+    private List<OrderItem> orderItems;
 
     private int totalItems;
 
-    private int totalPrice;
+    private Long totalPrice;
 }

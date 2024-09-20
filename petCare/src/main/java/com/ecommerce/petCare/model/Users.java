@@ -38,7 +38,7 @@ public class Users {
     private USER_ROLE role;
 
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "customer")
-    private List<Orders> orders = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     @ElementCollection
     private List<PetShopFavouritesDto> favourites = new ArrayList<>();

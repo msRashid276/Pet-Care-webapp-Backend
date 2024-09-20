@@ -37,7 +37,7 @@ public class PetShop {
     private String openingHours;
 
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "petShop")
-    private List<Orders> orders = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     @ElementCollection
     @Column(length = 1000)
