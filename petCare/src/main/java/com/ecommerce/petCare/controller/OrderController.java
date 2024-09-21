@@ -4,7 +4,9 @@ package com.ecommerce.petCare.controller;
 import com.ecommerce.petCare.model.Order;
 import com.ecommerce.petCare.model.Users;
 import com.ecommerce.petCare.request.OrderRequest;
+import com.ecommerce.petCare.response.PaymentResponse;
 import com.ecommerce.petCare.service.OrderService;
+import com.ecommerce.petCare.service.PaymentService;
 import com.ecommerce.petCare.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,13 +25,18 @@ public class OrderController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PaymentService paymentService;
+
 
     @PostMapping("/order")
-    public ResponseEntity<Order> createOrder(@RequestBody OrderRequest request, @RequestHeader("Authorization") String authHeader) throws Exception {
+    public ResponseEntity<PaymentResponse> createOrder(@RequestBody OrderRequest request, @RequestHeader("Authorization") String authHeader) throws Exception {
         Users user = userService.findUserByAuthorizationHeader(authHeader);
-
         Order order = orderService.createOrder(request,user);
-        return new ResponseEntity<>(order, HttpStatus.CREATED);
+
+        PaymentResponse paymentResponse = paymentService.createPaymentLink(order);
+
+        return new ResponseEntity<>(paymentResponse, HttpStatus.CREATED);
     }
 
 
