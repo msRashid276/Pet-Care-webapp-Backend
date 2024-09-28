@@ -7,7 +7,7 @@ import com.ecommerce.petCare.response.AuthenticationResponse;
 
 public interface UserService {
 
-    public RegisterRequest register(RegisterRequest request);
+    public Users register(RegisterRequest request);
 
     public AuthenticationResponse authenticate(AuthenticationRequest request);
 

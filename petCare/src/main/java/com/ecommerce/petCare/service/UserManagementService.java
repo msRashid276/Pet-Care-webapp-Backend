@@ -5,12 +5,14 @@ import com.ecommerce.petCare.model.Users;
 import com.ecommerce.petCare.request.RegisterRequest;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserManagementService {
     List<Users> getAllUsers();
 
+    Users createUser(RegisterRequest request, Users user) throws Exception;
 
-    RegisterRequest updateUser(Long id, RegisterRequest request, Users user);
+    Users updateUser(Long id, RegisterRequest request, Users user);
 
     void deleteUser(Long id,Users user);
 

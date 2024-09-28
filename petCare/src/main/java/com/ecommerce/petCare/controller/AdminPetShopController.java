@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/shop-owner/pet-shops")
+@RequestMapping("/api/shop-owner/pet-shop")
 public class AdminPetShopController {
 
 

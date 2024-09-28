@@ -39,7 +39,7 @@ public class UserServiceImp implements UserService{
 
 
     @Override
-    public RegisterRequest register(RegisterRequest request) {
+    public Users register(RegisterRequest request) {
 
         try {
             String role = request.getRole() != null ? request.getRole().toString() : "CUSTOMER";
@@ -54,7 +54,7 @@ public class UserServiceImp implements UserService{
 
 
             userRepo.save(user);
-            return request;
+            return user;
 
         }catch (Exception e){
             throw new RuntimeException("Registration failed: " + e.getMessage());

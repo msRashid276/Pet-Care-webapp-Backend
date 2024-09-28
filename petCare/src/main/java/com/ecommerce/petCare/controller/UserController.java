@@ -21,17 +21,16 @@ public class UserController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<RegisterRequest> register(@RequestBody RegisterRequest request){
-        System.out.println("huuuu"+request);
-        RegisterRequest register = userService.register(request);
+    public ResponseEntity<Users> register(@RequestBody RegisterRequest request){
+        Users register = userService.register(request);
         return new ResponseEntity<>(register, HttpStatus.OK);
     }
 
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request){
-        AuthenticationResponse authenticate1 = userService.authenticate(request);
-        return new ResponseEntity<>(authenticate1, HttpStatus.OK);
+        AuthenticationResponse authenticate = userService.authenticate(request);
+        return new ResponseEntity<>(authenticate, HttpStatus.OK);
     }
 
 }

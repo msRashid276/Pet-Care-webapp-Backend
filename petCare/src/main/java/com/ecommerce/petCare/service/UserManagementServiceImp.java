@@ -5,6 +5,7 @@ import com.ecommerce.petCare.model.Users;
 import com.ecommerce.petCare.repository.UserRepo;
 import com.ecommerce.petCare.request.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,21 @@ public class UserManagementServiceImp implements UserManagementService{
     }
 
     @Override
-    public RegisterRequest updateUser(Long id, RegisterRequest request, Users user) {
+    public Users createUser(RegisterRequest request, Users user) throws Exception {
+
+        Users newUser = new Users();
+        newUser.setFirstName(request.getFirstName());
+        newUser.setLastName(request.getLastName());
+        newUser.setEmail(request.getEmail());
+        newUser.setPassword(passwordEncoder.encode(request.getPassword()));
+        newUser.setRole(request.getRole());
+
+        userRepo.save(newUser);
+        return newUser;
+    }
+
+    @Override
+    public Users updateUser(Long id, RegisterRequest request, Users user) {
 
 
         try {
@@ -42,7 +57,7 @@ public class UserManagementServiceImp implements UserManagementService{
                 }
                 existingUser.setRole(request.getRole());
                 userRepo.save(existingUser);
-                return request;
+                return existingUser;
             } else {
                 throw new RuntimeException("User not found");
             }
@@ -59,6 +74,7 @@ public class UserManagementServiceImp implements UserManagementService{
     public void deleteUser(Long id, Users user) {
         userRepo.deleteById(id);
     }
+
 
     @Override
     public Users getUserById(Long id, Users user) {

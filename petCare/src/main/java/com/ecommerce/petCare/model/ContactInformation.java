@@ -9,10 +9,9 @@ import lombok.Data;
 @Embeddable
 public class ContactInformation {
 
-    @Column(nullable = false)
+
     private String email;
 
-    @Column(nullable = false)
     private String mobile;
 
     private String twitter;

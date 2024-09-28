@@ -32,12 +32,21 @@ public class AdminUserManagementController {
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
 
+    @PostMapping("/user")
+    public ResponseEntity<Users> addUser(@RequestBody RegisterRequest request, @RequestHeader("Authorization") String authHeader ) throws Exception {
+
+        Users user = userService.findUserByAuthorizationHeader(authHeader);
+
+        Users customers = userManagementService.createUser(request,user);
+        return new ResponseEntity<>(customers, HttpStatus.CREATED);
+    }
+
     @PutMapping("/user/{id}")
-    public ResponseEntity<RegisterRequest> updateUser(@PathVariable Long id, @RequestBody RegisterRequest request, @RequestHeader("Authorization") String authHeader ) throws Exception {
+    public ResponseEntity<Users> updateUser(@PathVariable Long id, @RequestBody RegisterRequest request, @RequestHeader("Authorization") String authHeader ) throws Exception {
 
 
         Users user = userService.findUserByAuthorizationHeader(authHeader);
-        RegisterRequest customers = userManagementService.updateUser(id,request,user);
+        Users customers = userManagementService.updateUser(id,request,user);
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
 
