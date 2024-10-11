@@ -3,6 +3,7 @@ package com.ecommerce.petCare.request;
 
 import com.ecommerce.petCare.model.Address;
 import com.ecommerce.petCare.model.ContactInformation;
+import jakarta.persistence.Lob;
 import lombok.Data;
 
 import java.util.List;

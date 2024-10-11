@@ -11,6 +11,7 @@ import com.ecommerce.petCare.repository.UserRepo;
 import com.ecommerce.petCare.request.CreatePetShopRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -37,19 +38,21 @@ public class PetShopServiceImp implements PetShopService{
 
 
     @Override
-    public PetShop createPetShop(CreatePetShopRequest request, Users user) throws Exception {
+    public PetShop createPetShop(CreatePetShopRequest shop, Users user) throws Exception {
 
-        Address address = addressRepo.save(request.getAddress());
+
+        Address address = addressRepo.save(shop.getAddress());
 
         PetShop petShop = new PetShop();
 
-        petShop.setName(request.getName());
+        petShop.setName(shop.getName());
         petShop.setAddress(address);
-        petShop.setDescription(request.getDescription());
-        petShop.setImages(request.getImages());
-        petShop.setContactInformation(request.getContactInformation());
-        petShop.setOpeningHours(request.getOpeningHours());
+        petShop.setDescription(shop.getDescription());
+        petShop.setImages(shop.getImages());
+        petShop.setContactInformation(shop.getContactInformation());
+        petShop.setOpeningHours(shop.getOpeningHours());
         petShop.setRegistrationDate(LocalDateTime.now());
+        petShop.setImages(shop.getImages());
         petShop.setOwner(user);
 
         return petShopRepo.save(petShop);
@@ -106,12 +109,12 @@ public class PetShopServiceImp implements PetShopService{
     @Override
     public PetShop getPetShopByUserId(Long userId) throws Exception {
 
-        PetShop petShop = petShopRepo.findByOwnerId(userId);
+        Optional<PetShop> petShop = petShopRepo.findByOwnerId(userId);
 
-        if(petShop==null){
+        if(petShop.isEmpty()){
             throw new Exception("PetShop is not found with owner id " + userId);
         }
-        return petShop;
+        return petShop.get();
     }
 
 
@@ -168,7 +171,8 @@ public class PetShopServiceImp implements PetShopService{
     }
 
     @Override
-    public List<PetShop> searchPetShop(String keyword) {
+    public List<PetShop> searchPetShop(String keyword)
+    {
         return petShopRepo.findPetShopBySearchQuery(keyword);
     }
 

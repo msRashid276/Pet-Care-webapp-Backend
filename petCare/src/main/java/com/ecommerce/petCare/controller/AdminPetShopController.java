@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/shop-owner/pet-shop")
@@ -27,12 +28,17 @@ public class AdminPetShopController {
 
 
     @PostMapping()
-    public ResponseEntity<PetShop> createPetShop(@RequestBody CreatePetShopRequest request, @RequestHeader("Authorization") String authHeader) throws Exception{
+    public ResponseEntity<?> createPetShop(@RequestPart("shop") CreatePetShopRequest shop, @RequestHeader("Authorization") String authHeader) throws Exception{
 
-        Users user = userService.findUserByAuthorizationHeader(authHeader);
+        try{
+            Users user = userService.findUserByAuthorizationHeader(authHeader);
 
-        PetShop petShop = petShopService.createPetShop(request,user);
-        return new ResponseEntity<>(petShop, HttpStatus.CREATED);
+            PetShop petShop = petShopService.createPetShop(shop,user);
+            return new ResponseEntity<>(petShop, HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
 

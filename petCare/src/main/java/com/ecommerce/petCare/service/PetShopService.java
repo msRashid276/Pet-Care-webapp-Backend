@@ -5,12 +5,13 @@ import com.ecommerce.petCare.dto.PetShopFavouritesDto;
 import com.ecommerce.petCare.model.PetShop;
 import com.ecommerce.petCare.model.Users;
 import com.ecommerce.petCare.request.CreatePetShopRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface PetShopService {
 
-    public PetShop createPetShop(CreatePetShopRequest request, Users user) throws Exception;
+    public PetShop createPetShop(CreatePetShopRequest shop, Users user) throws Exception;
 
     public PetShop updatePetShop(Long petShopId, CreatePetShopRequest updatePetShopRequest) throws Exception;
 

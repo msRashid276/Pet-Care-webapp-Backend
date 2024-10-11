@@ -17,4 +17,6 @@ public interface UserManagementService {
     void deleteUser(Long id,Users user);
 
     Users getUserById(Long id, Users user);
+
+    List<Users> searchUsers(String keyword);
 }

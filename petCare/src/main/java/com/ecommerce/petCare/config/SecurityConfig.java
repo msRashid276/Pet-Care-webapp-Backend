@@ -42,7 +42,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
                         .requestMatchers("/api/shop-owner/**").hasAnyAuthority("SHOP_OWNER","ADMIN")
                         .requestMatchers("/api/user/**").hasAnyAuthority("CUSTOMER","ADMIN")
-                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/auth/**","/cloudinary/upload").permitAll()
                         .anyRequest().authenticated())
 
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

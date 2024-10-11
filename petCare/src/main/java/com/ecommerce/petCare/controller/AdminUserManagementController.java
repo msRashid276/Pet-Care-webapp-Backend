@@ -69,6 +69,16 @@ public class AdminUserManagementController {
     }
 
 
+    @GetMapping("/users/search")
+    public ResponseEntity<List<Users>> searchUsers(@RequestParam String keyword,@RequestHeader("Authorization") String authHeader) throws Exception {
+
+        Users user = userService.findUserByAuthorizationHeader(authHeader);
+
+        List<Users> users = userManagementService.searchUsers(keyword);
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+
 
 
 

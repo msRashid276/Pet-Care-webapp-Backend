@@ -22,7 +22,7 @@ public class UserManagementServiceImp implements UserManagementService{
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public List<Users> getAllUsers() {
+    public List<Users>getAllUsers() {
         return userRepo.findAll();
     }
 
@@ -79,6 +79,11 @@ public class UserManagementServiceImp implements UserManagementService{
     @Override
     public Users getUserById(Long id, Users user) {
          return userRepo.findById(id).orElseThrow(()->new RuntimeException("user not found"));
+    }
+
+    @Override
+    public List<Users> searchUsers(String keyword) {
+        return userRepo.findUsersBySearchQuery(keyword);
     }
 
 
