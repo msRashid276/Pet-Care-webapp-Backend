@@ -13,7 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/shop-owner/species")
@@ -27,12 +29,23 @@ public class AdminSpeciesController {
 
 
     @PostMapping()
-    public ResponseEntity<Species> createSpecies(@RequestBody CreateSpeciesRequest request, @RequestHeader("Authorization") String authHeader) throws Exception {
-        Users user = userService.findUserByAuthorizationHeader(authHeader);
+    public ResponseEntity<?> createSpecies(@RequestBody CreateSpeciesRequest request, @RequestHeader("Authorization") String authHeader) throws Exception {
+        try{
+            System.out.println(request.getName());
+            Users user = userService.findUserByAuthorizationHeader(authHeader);
 
-        Species species = speciesService.createSpecies(request.getName(),user.getId());
+            Species species = speciesService.createSpecies(request.getName(),user.getId());
 
-        return new ResponseEntity<>(species, HttpStatus.CREATED);
+            return new ResponseEntity<>(species, HttpStatus.CREATED);
+        }catch (Exception e) {
+            // Custom error response with additional details
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("message", "An error occurred while creating the species. Please try again later.");
+            errorResponse.put("error", e.getMessage()); // Optional: include the actual exception message for debugging
+
+            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        }
+
     }
 
 

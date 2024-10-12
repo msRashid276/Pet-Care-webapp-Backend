@@ -18,4 +18,5 @@ public class CreatePetShopRequest {
     private String openingHours;
     private List<String> images;
 
+
 }

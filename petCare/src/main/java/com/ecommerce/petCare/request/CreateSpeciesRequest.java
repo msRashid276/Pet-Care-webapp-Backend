@@ -8,6 +8,4 @@ public class CreateSpeciesRequest {
 
     private String name;
 
-    private Long petShopId;
-
 }

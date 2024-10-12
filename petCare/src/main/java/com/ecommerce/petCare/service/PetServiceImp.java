@@ -8,6 +8,7 @@ import com.ecommerce.petCare.request.CreatePetRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,6 +37,8 @@ public class PetServiceImp implements PetService{
         pet.setPrice(request.getPrice());
         pet.setAge(request.getAge());
         pet.setGender(request.getGender());
+        pet.setCreationDate(LocalDateTime.now());
+        pet.setAvailable(request.isAvailable());
 
         Pet savedPet = petRepo.save(pet);
         petShop.getPets().add(savedPet);

@@ -32,7 +32,7 @@ public class AdminPetController{
 
 
     @PostMapping("/pets")
-    public ResponseEntity<Pet> createPet(@RequestBody CreatePetRequest request, @RequestHeader("Authorization") String authHeader) throws Exception {
+    public ResponseEntity<Pet> createPet(@RequestPart("pet") CreatePetRequest request, @RequestHeader("Authorization") String authHeader) throws Exception {
 
         Users user = userService.findUserByAuthorizationHeader(authHeader);
         PetShop petShop = petShopService.findPetShopById(request.getPetShopId());

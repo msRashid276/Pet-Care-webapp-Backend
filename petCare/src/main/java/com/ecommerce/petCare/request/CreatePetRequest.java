@@ -18,5 +18,6 @@ public class CreatePetRequest {
     private List<String> images;
     private String description;
     private Long petShopId;
+    private boolean available;
 
 }

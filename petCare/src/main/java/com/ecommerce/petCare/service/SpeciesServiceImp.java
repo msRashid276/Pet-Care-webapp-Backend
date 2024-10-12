@@ -31,6 +31,11 @@ public class SpeciesServiceImp implements SpeciesService{
         try {
             PetShop petShop = petShopService.getPetShopByUserId(userId);
 
+            Optional<Species> existingSpecies = speciesRepo.findByName(name);
+            if(existingSpecies.isPresent()){
+                throw new Exception("Species already exists in this pet shop");
+            }
+
             Species species = new Species();
             species.setName(name);
             species.setPetShop(petShop);
