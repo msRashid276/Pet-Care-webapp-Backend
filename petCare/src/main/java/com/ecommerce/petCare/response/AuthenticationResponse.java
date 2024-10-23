@@ -1,5 +1,6 @@
 package com.ecommerce.petCare.response;
 
+import com.ecommerce.petCare.model.Users;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,5 +15,6 @@ public class AuthenticationResponse {
     private String token;
     private String firstName;
     private String role;
+    private Users user;
 
 }

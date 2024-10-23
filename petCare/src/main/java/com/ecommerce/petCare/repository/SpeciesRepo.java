@@ -14,6 +14,6 @@ public interface SpeciesRepo extends JpaRepository<Species,Long> {
 
     public List<Species> findByPetShopId(Long id);
 
-    Optional<Species> findByName(String name);
+    Optional<Species> findByNameAndPetShopId(String name,Long petShopId);
 
 }

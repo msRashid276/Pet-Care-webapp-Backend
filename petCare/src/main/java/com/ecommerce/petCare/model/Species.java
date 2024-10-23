@@ -13,6 +13,11 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"name", "pet_shop_id"})
+        }
+)
 public class Species {
 
     @Id
@@ -25,7 +30,8 @@ public class Species {
 //    private List<Pet> pets;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne()
+    @JoinColumn(name = "pet_shop_id")
     private PetShop petShop;
 
 }

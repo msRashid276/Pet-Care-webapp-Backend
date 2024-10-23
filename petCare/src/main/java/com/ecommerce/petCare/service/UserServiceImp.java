@@ -91,6 +91,7 @@ public class UserServiceImp implements UserService{
                         .token(jwtToken)
                         .firstName(userPrinciple.getUser().getFirstName())
                         .role(String.valueOf(userPrinciple.getUser().getRole()))
+                        .user(userPrinciple.getUser())
                         .build();
             }else{
                 throw new RuntimeException("Authentication failed");
