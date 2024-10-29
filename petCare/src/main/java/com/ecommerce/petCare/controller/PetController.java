@@ -32,7 +32,7 @@ public class PetController {
         return new ResponseEntity<>(pets, HttpStatus.OK);
     }
 
-    @GetMapping("/petShop/{petShopId}")
+    @GetMapping("/pet-shop/{petShopId}")
     public ResponseEntity <List<Pet>> getPetShopPets(@PathVariable Long petShopId,
                                                           @RequestParam(required = false) String species,
                                                           @RequestParam(required = false) String breed,

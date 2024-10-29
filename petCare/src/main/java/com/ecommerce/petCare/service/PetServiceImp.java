@@ -46,6 +46,11 @@ public class PetServiceImp implements PetService{
     }
 
     @Override
+    public Pet updatePet(Long petId, CreatePetRequest request) throws Exception {
+        return null;
+    }
+
+    @Override
     public void deletePet(Long petId) throws Exception {
 
         Pet pet = findPetById(petId);

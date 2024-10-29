@@ -5,6 +5,7 @@ import com.ecommerce.petCare.model.Pet;
 import com.ecommerce.petCare.model.PetShop;
 import com.ecommerce.petCare.model.Users;
 import com.ecommerce.petCare.request.CreatePetRequest;
+import com.ecommerce.petCare.request.CreatePetShopRequest;
 import com.ecommerce.petCare.response.MessageResponse;
 import com.ecommerce.petCare.service.PetService;
 import com.ecommerce.petCare.service.PetShopService;
@@ -38,6 +39,16 @@ public class AdminPetController{
         PetShop petShop = petShopService.findPetShopById(request.getPetShopId());
 
         Pet pet = petService.createPet(request,petShop);
+        return new ResponseEntity<>(pet, HttpStatus.CREATED);
+    }
+
+
+    @PutMapping("/{petId}")
+    public ResponseEntity<Pet> updatePetShop(@PathVariable Long petId, @RequestBody CreatePetRequest updatePetRequest, @RequestHeader("Authorization") String authHeader) throws Exception{
+
+        Users user = userService.findUserByAuthorizationHeader(authHeader);
+
+        Pet pet = petService.updatePet(petId,updatePetRequest);
         return new ResponseEntity<>(pet, HttpStatus.CREATED);
     }
 

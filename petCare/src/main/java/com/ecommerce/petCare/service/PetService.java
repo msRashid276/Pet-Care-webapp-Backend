@@ -13,6 +13,8 @@ public interface PetService {
 
         public Pet createPet(CreatePetRequest request, PetShop petShop) throws Exception;
 
+        public Pet updatePet(Long petId, CreatePetRequest request) throws Exception;
+
         public void deletePet(Long petId) throws Exception;
 
         List<Pet> searchPets(String keyword) throws Exception;
